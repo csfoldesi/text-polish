@@ -1,0 +1,12 @@
+@API_HostAddress = http://localhost:5075/api/text
+
+
+# Fix Text
+POST {{API_HostAddress}}
+Accept: application/json
+Content-Type: application/json
+
+{
+  "text": "I am a good full stack developer who can program dotnet core and angular"
+}
+###
