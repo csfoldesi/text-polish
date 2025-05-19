@@ -15,5 +15,12 @@ public class DataContext : IdentityDbContext<User>, IDataContext
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
+
+        builder
+            .Entity<TokenUsage>()
+            .HasOne(t => t.User)
+            .WithMany()
+            .HasForeignKey(t => t.UserId)
+            .OnDelete(DeleteBehavior.NoAction);
     }
 }

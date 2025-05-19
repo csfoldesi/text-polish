@@ -1,6 +1,7 @@
 ﻿using Application.Common.Interfaces;
 using Domain;
 using MediatR;
+using Microsoft.AspNetCore.Identity;
 
 namespace Application.Text
 {
@@ -15,11 +16,13 @@ namespace Application.Text
         {
             private readonly IAIService _AIService;
             private readonly IDataContext _dataContext;
+            private readonly IUser _user;
 
-            public Handler(IAIService aIService, IDataContext dataContext)
+            public Handler(IAIService aIService, IDataContext dataContext, IUser user)
             {
                 _AIService = aIService;
                 _dataContext = dataContext;
+                _user = user;
             }
 
             public async Task<string> Handle(Query request, CancellationToken cancellationToken)
@@ -30,6 +33,7 @@ namespace Application.Text
                     Model = result.Model ?? "",
                     InputTokenCount = result.InputTokenCount,
                     OutputTokenCount = result.OutputTokenCount,
+                    UserId = _user.Id!,
                 };
                 _dataContext.TokenUsages.Add(tokenUsage);
                 try

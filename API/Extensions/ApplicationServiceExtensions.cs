@@ -1,4 +1,7 @@
-﻿namespace API.Extensions;
+﻿using API.Services;
+using Application.Common.Interfaces;
+
+namespace API.Extensions;
 
 public static class ApplicationServiceExtensions
 {
@@ -9,7 +12,7 @@ public static class ApplicationServiceExtensions
     {
         services.AddControllers();
         services.AddEndpointsApiExplorer();
-        //services.AddScoped<IUser, CurrentUser>();
+        services.AddScoped<IUser, CurrentUser>();
         services.AddOpenApi();
 
         services.AddHttpContextAccessor();
