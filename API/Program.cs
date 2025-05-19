@@ -1,5 +1,6 @@
 using API.Extensions;
 using Application;
+using Infrastructure.Identity;
 using Infrastructure.OpenAI;
 using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +13,7 @@ builder.Services.AddControllers();
 builder.Services.AddAPIServices(builder.Configuration);
 builder.Services.AddApplicationServices();
 builder.Services.AddPersistenceServices(builder.Configuration);
+builder.Services.AddIdentityServices(builder.Configuration);
 builder.Services.AddOpenAIServices(builder.Configuration);
 
 var app = builder.Build();
@@ -30,6 +32,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseCors("CorsPolicy");
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

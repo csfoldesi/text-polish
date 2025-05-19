@@ -20,13 +20,20 @@ public class OpenAIService : IAIService
 Then, rewrite it to sound more natural and professional while preserving the original meaning.
 Provide only the improved version.
 Text: {text}";
-        ChatCompletion completion = await _client.CompleteChatAsync(prompt);
+        /*ChatCompletion completion = await _client.CompleteChatAsync(prompt);
         return new AIResult<string>
         {
             Result = completion.Content[0].Text,
             Model = completion.Model,
             InputTokenCount = completion.Usage.InputTokenCount,
             OutputTokenCount = completion.Usage.OutputTokenCount,
+        };*/
+        return new AIResult<string>
+        {
+            Result = "OK",
+            Model = "test",
+            InputTokenCount = 0,
+            OutputTokenCount = 0,
         };
     }
 
