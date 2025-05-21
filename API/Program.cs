@@ -13,7 +13,9 @@ builder.Services.AddAPIServices(builder.Configuration);
 builder.Services.AddPersistenceServices(builder.Configuration);
 builder.Services.AddApplicationServices();
 builder.Services.AddIdentityServices(builder.Configuration);
-builder.Services.AddOpenAIServices(builder.Configuration);
+
+//builder.Services.AddOpenAIServices(builder.Configuration);
+builder.Services.AddAzureOpenAIServices(builder.Configuration);
 
 var app = builder.Build();
 using (var scope = app.Services.CreateScope())
